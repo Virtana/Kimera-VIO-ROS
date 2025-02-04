@@ -1,5 +1,7 @@
 FROM ros:noetic-ros-base
 
+ENV DEBIAN_FRONTEND=noninteractive 
+
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install -y ros-noetic-image-geometry ros-noetic-pcl-ros \
     ros-noetic-cv-bridge git cmake build-essential unzip pkg-config autoconf \
@@ -11,18 +13,27 @@ RUN apt-get install -y ros-noetic-image-geometry ros-noetic-pcl-ros \
     libparmetis-dev \
     python3-wstool python3-catkin-tools \
     # libtbb recommended for speed: \
-    libtbb-dev
+    libtbb-dev \
+    # for use with rviz
+    xvfb 
 
 RUN mkdir -p /catkin_ws/src/
 RUN git clone https://github.com/MIT-SPARK/Kimera-VIO-ROS.git /catkin_ws/src/Kimera-VIO-ROS
-RUN cd /catkin_ws/src/Kimera-VIO-ROS 
-    # && git checkout ___
+
 RUN cd /catkin_ws/src/ && wstool init && \
     wstool merge Kimera-VIO-ROS/install/kimera_vio_ros_https.rosinstall && wstool update
 
 # Build catkin workspace
 RUN apt-get install -y ros-noetic-image-pipeline ros-noetic-geometry ros-noetic-rviz
 
+# Downloading EuRoC bag file for demo
+RUN apt-get install -y wget && \
+    wget -P /catkin_ws/ http://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/vicon_room1/V1_01_easy/V1_01_easy.bag
+
 RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
-    catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    catkin build
+        catkin init && catkin config --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+        catkin build -j4
+
+# Setting up bashrc
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
