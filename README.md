@@ -25,6 +25,8 @@ We kindly ask to cite our paper if you find this library useful:
 
 # 1. Installation
 
+**If you use an Ubuntu version that is newer than 20.04, it is highly recommended that you use Docker due to avoid ROS imcompatibility issues. See `docker` directory for instructions.**
+
 ## A. Prerequisities
 
 - Install ROS by following [our reference](./docs/ros_installation.md), or the official [ROS website](https://www.ros.org/install/).
