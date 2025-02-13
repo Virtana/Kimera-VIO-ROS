@@ -39,10 +39,6 @@
     uri: git@github.com:MIT-SPARK/Kimera-VIO.git
     version: master
 - git:
-    local-name: Kimera-VIO-ROS
-    uri: git@github.com:MIT-SPARK/Kimera-VIO-ROS.git
-    version: master
-- git:
     local-name: glog_catkin
     uri: git@github.com:ethz-asl/glog_catkin.git
     version: master
