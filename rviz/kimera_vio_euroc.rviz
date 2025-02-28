@@ -264,11 +264,11 @@ Visualization Manager:
         Y: 0.697479725
         Z: 4.14300621e-06
       Focal Shape Fixed Size: true
-      Focal Shape Size: 0.05000000074505806
+      Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
-      Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5247974395751953
+      Near Clip Distance: 0.00999999978
+      Pitch: 0.52479744
       Target Frame: base_link
       Yaw: 2.698676109313965
     Saved:
