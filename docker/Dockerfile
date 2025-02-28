@@ -40,3 +40,6 @@ RUN . /opt/ros/noetic/setup.sh && cd /catkin_ws && \
 # Add to bashrc so user doesn't have to manually do this in every new ROS terminal.
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+
+# Resolves an issue where Rviz seg faults on older intel processors
+RUN echo "export LIBGL_ALWAYS_SOFTWARE=1" >> ~/.bashrc
