@@ -34,5 +34,6 @@ These instructions mention running various commands in multiple terminals. This 
 
 ## Possible errors:
 * If your trajectory tracking looks incorrect immediately on running, update the `autoInitialize` field from 0 to 1 in `/catkin_ws/src/Kimera-VIO/params/Euroc/BackendParams.yaml`.
+  * In some configurations rviz seg faults if this value is 0. The exact cause is unknown, but will be investigated and fixed if possible.
 * An X server should be installed on your local machine to allow Rviz to be used with the container.
 * Currently, the default number of jobs for building is set to 4. With a 13th Gen Intel i7-1360P Processor, this takes up to ~8GB of RAM with no other applications running. You may want to reduce the number of jobs if your machine does not have enough memory.
